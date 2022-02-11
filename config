@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #093309
 background-alt = #23771f
 ;foreground = ${xrdb:color7:#222}
 ;foreground = #dfdfdf
@@ -42,7 +42,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = #f00
+line-color = #f00 
 
 border-size = 4
 border-color = #00000000
@@ -53,13 +53,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = misc fixed:pixelsize=9;1
-font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
-font-2 = siji:pixelsize=8;1
+font-0 = terminus:pixelsize=12;0
+font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
+font-2 = siji:pixelsize=12;1
+font-3 = FontAwesome 6 Free:style=Regular:pixelsize=12;2
+font-4 = FontAwesome 6 Free:style=Solid:pixelsize=12;2
 
 modules-left = i3
 modules-center = mpd
-modules-right = filesystem pulseaudio temperature memory cpu xkeyboard date powermenu
+modules-right = pulseaudio filesystem temperature memory cpu date xkeyboard powermenu
 
 tray-position = right
 tray-padding = 2
@@ -87,12 +89,13 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.primary}
+format-prefix =" "
+format-prefix-foreground = #40a40a
+# format-prefix-foreground = ${colors.foreground-alt}
+# format-prefix-underline = ${colors.primary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.primary}
+# label-layout-underline = ${colors.primary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -103,33 +106,10 @@ label-indicator-underline = ${colors.secondary}
 type = internal/fs
 interval = 25
 
-mount-0 = /
-
-label-mounted = %{F#fffff}%mountpoint%%{F-}: %free%
+mount-0 = / 
+label-mounted =  %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
 
 [module/i3]
 type = internal/i3
@@ -207,17 +187,19 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #48f44f
+format-prefix = " "
+format-prefix-foreground = #40a40a
+# format-prefix-foreground = ${colors.foreground-alt}
+# format-underline = #48f44f
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #40a40a
+format-prefix = " "
+format-prefix-foreground = #40a40a
+# format-prefix-foreground = ${colors.foreground-alt}
+# format-underline = #40a40a
 label = %percentage_used%%
 
 [module/wlan]
@@ -268,9 +250,9 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #41a43a
+# format-prefix = 
+# format-prefix-foreground = ${colors.foreground-alt}
+# format-underline = #41a43a
 
 label = %date% %time%
 
