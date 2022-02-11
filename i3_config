@@ -18,7 +18,7 @@ bindsym $mod+F3 exec pcmanfm
 bindsym $mod+m exec mousepad
 
 # set wallpaper
-exec_always feh --bg-fill /home/marol/Pictures/Wallpapers/bridge-1.jpg
+exec_always feh --bg-fill /home/marol/Pictures/Wallpapers/1_gr_wallpaper.jpg
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -89,10 +89,6 @@ bindsym $mod+k exec viber
 bindsym $mod+l exec whatsapp-for-linux
 bindsym $mod+semicolon exec zoom
 bindsym $mod+Shift+s exec skypeforlinux
-
-# TWS
-
-bindsym $mod+t exec /home/marol/Jts/981/tws
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -226,7 +222,13 @@ exec --no-startup-id blueman-applet
 # bar {
 #        status_command i3status
 # }
-
+# class			   border   backgr.  text     indicator  child_border
+  client.focused  	   #48f44f  #48f44f  #3a7c3a  #43f43f    #43f43f
+  client.focused_inactive  #3fce3f  #3fce3f  #7cf7cf  #8fff8f    #8fff8f
+  client.unfocused	   #2d875a  #2d875a  #3daa3d  #8fff8f    #8fff8f
+  client.urgent		   #66cc99  #66cc99  #7cf7cf  #8fff8f    #8fff8f
+  client.placeholder	   #40a40a  #40a40a  #3daa3d  #8fff8f    #8fff8f
+  
 # set shutdown, restart and locking features
 bindsym $mod+0 mode "$mode_system"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
