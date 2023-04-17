@@ -11,19 +11,9 @@
 
 set $mod Mod4
 
-set $fileManager pcmanfm
-bindsym $mod+F3 exec pcmanfm
-
-# set texteditor
-bindsym $mod+m exec mousepad
-
-# set wallpaper
-exec_always feh --bg-fill /home/marol/Pictures/Wallpapers/1_gr_wallpaper.jpg
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-# font pango:monospace 8
-font pango:terminus 10 
+font pango:JetBrains Mono 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -51,44 +41,58 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# set gaps
+gaps inner 5
+gaps outer 5
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
 
 # Keyboard layout
 exec setxkbmap -model pc105 "us,ru,ua" ",winkeys" "grp:alt_shift_toggle"
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#set wallpaper
+exec_always feh --bg-fill /home/marol/Pictures/Wallpapers/P1.jpg
 
+# start a terminal
+bindsym $mod+Return exec kitty
+
+# start browsers
+bindsym $mod+F2 exec vivaldi-stable
+bindsym $mod+F6 exec librewolf
+
+# filemanager
+bindsym $mod+F3 exec pcmanfm
+
+# start texteditor
+bindsym $mod+m exec mousepad
+
+# start layout manager
+bindsym $mod+Shift+m exec i3-layout-manager
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# start browser
-bindsym $mod+F2 exec vivaldi-stable
-
-bindsym $mod+F4 exec smplayer
-bindsym $mod+F5 exec libreoffice
-bindsym $mod+Shift+f exec flameshot
-
-# picom
-bindsym $mod+p exec --no-startup-id pkill picom
-bindsym $mod+Ctrl+p exec --no-startup-id picom -b
-exec_always picom -f
-
 # messangers
 bindsym $mod+j exec telegram-desktop
-bindsym $mod+k exec viber
-bindsym $mod+l exec whatsapp-for-linux
+bindsym $mod+k exec signal-desktop
+bindsym $mod+l exec whatsapp-nativefier
 bindsym $mod+semicolon exec zoom
-bindsym $mod+Shift+s exec skypeforlinux
+bindsym $mod+Shift+S exec skypeforlinux
+
+# start TWS
+bindsym $mod+t exec /home/marol/Jts/1012/tws
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -133,6 +137,14 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+bindsym $mod+F4 exec smplayer
+bindsym $mod+F5 exec libreoffice
+bindsym $mod+Shift+f exec flameshot
+
+# picom
+bindsym $mod+p exec --no-startup-id pkill picom
+bindsym $mod+Ctrl+p exec --no-startup-id picom -b
+exec_always picom -f
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -202,34 +214,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# set gaps
-gaps inner 5
-gaps outer 5
-
-# Lock screen
-# bindsym $mod+9 exec --no-startup-id blurlock
-exec --no-startup-id xautolock -time 10 -locker blurlock
-
-# Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id pacman-contrib
-exec --no-startup-id clipit
-exec --no-startup-id blueman-applet
-# exec --no-startup-id xrandr --output HDMI-0 --mode 2560x1440
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
 #        status_command i3status
 # }
-# class			   border   backgr.  text     indicator  child_border
-  client.focused  	   #48f44f  #48f44f  #3a7c3a  #43f43f    #43f43f
-  client.focused_inactive  #3fce3f  #3fce3f  #7cf7cf  #8fff8f    #8fff8f
-  client.unfocused	   #2d875a  #2d875a  #3daa3d  #8fff8f    #8fff8f
-  client.urgent		   #66cc99  #66cc99  #7cf7cf  #8fff8f    #8fff8f
-  client.placeholder	   #40a40a  #40a40a  #3daa3d  #8fff8f    #8fff8f
-  
+
+# Lock screen
+# bindsym $mod+9 exec --no-startup-id blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlock
+
 # set shutdown, restart and locking features
+
 bindsym $mod+0 mode "$mode_system"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -244,6 +240,8 @@ mode "$mode_system" {
      bindsym Return mode "default"
      bindsym Escape mode "default"
 }
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -268,6 +266,3 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # polkit
 exec --nostartup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Polybar launch Scrpit
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
