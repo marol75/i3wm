@@ -42,8 +42,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # set gaps
-gaps inner 5
-gaps outer 5
+gaps inner 2
+gaps outer 3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -53,10 +53,10 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # Keyboard layout
-exec setxkbmap -model pc105 "us,ru,ua" ",winkeys" "grp:alt_shift_toggle"
+exec setxkbmap -model pc105 "uk,us,ua" ",winkeys" "grp:alt_shift_toggle"
 
 #set wallpaper
-exec_always feh --bg-fill /home/marol/Pictures/Wallpapers/8_oresund.jpg
+#exec_always feh --bg-fill /home/marol/Pictures/Wallpapers/8_oresund.jpg
 
 # start a terminal
 bindsym $mod+Return exec kitty
@@ -66,8 +66,8 @@ bindsym $mod+F2 exec vivaldi-stable
 bindsym $mod+F6 exec librewolf
 
 # filemanager
-# bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F3 exec doublecmd
+bindsym $mod+F3 exec pcmanfm
+#bindsym $mod+F3 exec doublecmd
 
 # start texteditor
 bindsym $mod+m exec mousepad
@@ -221,6 +221,13 @@ bindsym $mod+r mode "resize"
 # bar {
 #        status_command i3status
 # }
+
+# class			   border   backgr.  text     indicator  child_border
+  client.focused  	   #7cfc00  #008000  #7cfc00  #32cd32    #7cfc00
+  client.focused_inactive  #195905  #195905  #2e8b57  #195905    #195905
+  client.unfocused	   #004225  #004225  #2e8b57  #004225    #004225
+  client.urgent		   #7fff00  #7fff00  #32cd32  #32cd32    #7fff00
+  client.placeholder	   #228b22  #228b22  #2e8b57  #006400    #228b22
 
 # Lock screen
 # bindsym $mod+9 exec --no-startup-id blurlock
